@@ -134,10 +134,10 @@ public class fragment_chedo3 extends Fragment {
                     if (TextUtils.isEmpty(s)) {
                         mSwitchEnabled = false;
                         swmode3.setChecked(false);
-                        swmode3.setEnabled(false);
+                      //  swmode3.setEnabled(false);
                     } else if (allEditTextsFilled()) {
                         mSwitchEnabled = true;
-                        swmode3.setEnabled(true);
+                    //    swmode3.setEnabled(true);
                     }
                 }
                 @Override
@@ -259,14 +259,7 @@ public class fragment_chedo3 extends Fragment {
             if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
-            showAlertDialog1("", "Không có kết nối mạng","Đóng");
-        }
-        // if (isWifi) {
-        //     showAlertDialog1("", "kết nối mạng Wifi","Đóng");
-        //  }
-        // if(isMobile){
-        //     showAlertDialog1("", "kết nối mạng di động","Đóng");
-        //  }
+            showAlertDialog1("", "Mất kết nối.","Đóng");        }
 
     }
 

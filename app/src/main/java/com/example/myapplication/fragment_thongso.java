@@ -44,8 +44,6 @@ public class fragment_thongso extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     View view;
     private BroadcastReceiver networkChangeReceiver;
-
-
     private boolean isConnected = false;
     CardView nhietdo1,doamdat1,anhsang1,doamkk1;
     ProgressDialog progressDialog;
@@ -54,19 +52,14 @@ public class fragment_thongso extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_thongso,container,false);
         check11();
-       // CustomProgressBar customProgressBar = new CustomProgressBar(getActivity());
-       // customProgressBar.show();
         anhxa();
-      //  checkNetworkConnection(fragment_thongso.this.getContext());
         GetCurrent();
         InitDataFirebase();
-
-
+        checkNetworkConnection(fragment_thongso.this.getContext());
         nhietdo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent nhietdo1 = new Intent(getActivity(),LineChart_nhietdo.class);
-
                 startActivity(nhietdo1);
             }
         });
@@ -74,33 +67,24 @@ public class fragment_thongso extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent doamkk1 = new Intent(getActivity(),Linechart_doam.class);
-
                 startActivity(doamkk1);
             }
         });
-
         doamdat1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent  doamdat1 = new Intent(getActivity(),Linechart_doamdat.class);
-
                 startActivity(doamdat1);
             }
         });
-
         anhsang1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent  anhsang1 = new Intent(getActivity(),Linechart_anhsang.class);
-
                 startActivity(anhsang1);
             }
         });
         return view;
-
-
-
-
     }
     private void anhxa(){
         tas1 = (TextView) view.findViewById(R.id.tas1);
@@ -122,13 +106,6 @@ public class fragment_thongso extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-            /*    new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        customProgressBar.hide();
-                    }
-                }, 1000);
-*/
 
                 String value =snapshot.getValue(String.class);
                 if(value != null)
@@ -166,40 +143,24 @@ public class fragment_thongso extends Fragment {
 
                     }
                 }
-             //   progressDialog.dismiss();
-
-
-
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-               // showAlertDialog();
-
-
-// Do some background work here
                 String errorMessage = "Mất kết nối với Firebase";
-
-// After finishing the background work, dismiss the progressDialog
                 Log.d("Error", errorMessage);
                 if (progressDialog != null && progressDialog.isShowing())
                 {
                     progressDialog.dismiss();
-
                 }
                 if (error.getCode() == DatabaseError.NETWORK_ERROR) {
                     errorMessage = "Không thể kết nối đến Firebase, vui lòng kiểm tra kết nối Internet của bạn";
                 }
                 showAlertDialog1("Lỗi", errorMessage, "Đóng");
-
-
-
-
             }
         });
-
     }
     private void GetCurrent(){
-        //   GetCurrent("Hanoi");
+
         RequestQueue requestQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
         String url = "https://api.weatherapi.com/v1/current.json?key=b421cb51418a45ef9f1150452232203&q=Hanoi&aqi=no";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -220,26 +181,14 @@ public class fragment_thongso extends Fragment {
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
-
             }
         },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
                     }
                 });
         requestQueue.add(stringRequest);
-    }
-
-    public void showAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setCancelable(false);
-        builder.setTitle("Lỗi");
-        builder.setMessage("Nhận dữ liệu thất bại");
-        builder.setPositiveButton("Đóng", null);
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
    private void check11()
    {
@@ -248,10 +197,8 @@ public class fragment_thongso extends Fragment {
        progressDialog.setMessage("Please wait.");
        progressDialog.setCancelable(false);
        progressDialog.show();
-     //  progressDialog.dismiss();
 
    }
-
     private void showAlertDialog1(String tieude,String noidung, String buttonn) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(tieude);
@@ -260,32 +207,15 @@ public class fragment_thongso extends Fragment {
         builder.setPositiveButton(buttonn, null);
         AlertDialog dialog = builder.create();
         dialog.show();
-
     }
-
     private void checkNetworkConnection(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-
         boolean isConnected = activeNetworkInfo != null && activeNetworkInfo.isConnected();
-      //  boolean isWifi = activeNetworkInfo != null && activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI;
-        //boolean isMobile = activeNetworkInfo != null && activeNetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
-
         if (!isConnected) {
             progressDialog.dismiss();
-            showAlertDialog1("", "Không có kết nối mạng.","Đóng");
+            showAlertDialog1("", "Mất kết nối.","Đóng");
         }
-       // if (isWifi) {
-       //     showAlertDialog1("", "kết nối mạng Wifi","Đóng");
-      //  }
-       // if(isMobile){
-       //     showAlertDialog1("", "kết nối mạng di động","Đóng");
-      //  }
 
     }
-
-
-
-
-
 }

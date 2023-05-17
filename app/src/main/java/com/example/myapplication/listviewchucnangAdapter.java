@@ -48,7 +48,6 @@ public class listviewchucnangAdapter extends BaseAdapter {
         this.nameicons = iconname;
         this.icons = icon;
         this.id = idd  ;
-
         inflater = LayoutInflater.from(ctx);
 
 

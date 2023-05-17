@@ -101,14 +101,9 @@ public class fragment_chucnang extends Fragment {
             if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
-            showAlertDialog1("", "Không có kết nối mạng.","Đóng");
-        }
+            showAlertDialog1("", "Mất kết nối.","Đóng");        }
         // if (isWifi) {
-        //     showAlertDialog1("", "kết nối mạng Wifi","Đóng");
-        //  }
-        // if(isMobile){
-        //     showAlertDialog1("", "kết nối mạng di động","Đóng");
-        //  }
+
 
     }
 

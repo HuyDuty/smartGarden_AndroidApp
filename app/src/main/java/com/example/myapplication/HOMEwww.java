@@ -26,15 +26,12 @@ public class HOMEwww extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.homee:
                         mViewPager.setCurrentItem(0);
-                        Toast.makeText(HOMEwww.this,"HOME",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.gearr:
                         mViewPager.setCurrentItem(1);
-                        Toast.makeText(HOMEwww.this,"Gear",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nutnhann:
                         mViewPager.setCurrentItem(2);
-                        Toast.makeText(HOMEwww.this,"NUTNHAN",Toast.LENGTH_SHORT).show();
 
                         break;
 

@@ -187,13 +187,9 @@ public class Bom_mode2 extends AppCompatActivity {
                     String formattedTime = formatter.format(new Date(giay * 1000));
                     t1.setText(formattedTime);
                     timeoutbom.setText(formattedTime);
-                    //     Log.d("TAG", formattedTime);
+
                     giay --;//progr
-                        /*     int   hourss = giay ;// 3600
-                            int   minutess = (giay % 3600); // 60
-                            int   secondss = giay % 60;
-                            String time_format = "{:02d}:{:02d}:{:02d}".format(String.valueOf(hourss),String.valueOf(minutess), String.valueOf(secondss));
-                          */
+
                     second = Integer.toString(giays);
 
                     if (giay == 0)
