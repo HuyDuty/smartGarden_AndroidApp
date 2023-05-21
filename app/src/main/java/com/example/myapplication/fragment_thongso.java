@@ -124,7 +124,7 @@ public class fragment_thongso extends Fragment {
                     tdad1.setText(str2);
 
                     value.getChars(6,8,vl,0);
-                    String str3= String.copyValueOf(vl) + "%";
+                    String str3= String.copyValueOf(vl) + "lx";
                     tas1.setText(str3);
 
                     value.getChars(8,9,vl,0);
